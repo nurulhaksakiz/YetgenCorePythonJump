@@ -1,0 +1,186 @@
+import random
+import time
+
+class Film:
+    def __init__(self, isim, ipucu1, ipucu2, ipucu3, ipucu4):
+        self.isim = isim
+        self.ipucu1 = ipucu1
+        self.ipucu2 = ipucu2
+        self.ipucu3 = ipucu3
+        self.ipucu4 = ipucu4
+
+filmler = [
+    Film("Gün Doğmadan", "Romantik film", "Ethan Hawke", "Julie Delpy", "yönetmen:richard linklater"),
+    Film("Prestij", "Büyücülük temalı", "Hugh Jackman", "Christopher Nolan Filmi", "Scarlett Johansson"),
+    Film("Başlangıç", "Rüya konulu", "Leonardo DiCaprio", "Christopher Nolan filmi", "karakter adı : cobb"),
+    Film("Yıldızlararası", "Uzayda geçiyor", "Matthew McConaughey", "karakter adı:cooper", "görsel efekt dalında oscar"),
+    Film("Esaretin Bedeli", "Hapishanede geçiyor", "Tim Robbins", "imdb puanı 9", "1994 yapım"),
+    Film("Baba", "Mafya filmi", "Marlon Brando", "imdb puanı 9.2", "1972 yapım"),
+    Film("Forrest Gump", "Komedi-drama filmi", "Tom Hanks", "imdb puanı 8.8", "1994 yapım"),
+    Film("Titanik", "Romantik film", "Leonardo DiCaprio", "Kate Winslet", "Gerçek bir olaydan esinlenilmiş bir film"),
+    Film("Joker", "Kötü karakterin hikayesi", "Joaquin Phoenix", "En İyi Erkek Oyuncu Oscarı", "Todd Phillips filmi"),
+    Film("Dövüş Kulübü", "Dövüş kulübü adlı yerde başlıyor", "Brad Pitt", "David Fincher filmi", "Edward Norton"),
+    Film("Matrix", "Bilim kurgu filmi", "Keanu Reeves", "1999 yapımı", "Yönetmen:Wachowski Kardeşler"),
+    Film("Yüzüklerin Efendisi Yüzük Kardeşliği", "Fantastik film", "Elijah Wood", "En İyi Film Akademi Ödülü", "Peter Jackson filmi"),
+    Film("Kuzuların Sessizliği", "Korku-gerilim filmi", "Anthony Hopkins", "En İyi Film Akademi Ödülü", "1991 yapım"),
+    Film("Yeşil Yol", "Hapishanede geçiyor", "Tom Hanks", "Stephen King uyarlaması", "1999 yapım"),
+    Film("Zindan Adası", "Psikolojik gerilim filmi", "Leonardo DiCaprio", "Martin Scorsese filmi", "2010 yapım"),
+    Film("Köstebek", "Mafya filmi", "Leonardo DiCaprio", "Martin Scorsese filmi", "En İyi Film Akademi Ödülü"),
+    Film("Önceki Gece", "Romantik film", "Ethan Hawke", "Julie Delpy", "yönetmen: Richard Linklater"),
+    Film("Kara Şövalye", "Batman filmlerinden biri", "Christian Bale", "Christopher Nolan filmi", "Heath Ledger Joker rolünde"),
+    Film("Sihirbazlar Çetesi", "Büyücülük temalı", "Hugh Jackman", "Christopher Nolan filmi", "Christian Bale"),
+    Film("İhtiyar Delikanlı", "Mafya filmi", "Leonardo DiCaprio", "Martin Scorsese filmi", "En İyi Film Akademi Ödülü"),Film("Gladyatör", "Epik aksiyon filmi", "Russell Crowe", "En İyi Film Akademi Ödülü", "2000 yapımı"),
+    Film("Yüzüklerin Efendisi Kralın Dönüşü", "Fantastik film", "Elijah Wood", "En İyi Film Akademi Ödülü", "Peter Jackson filmi"),
+    Film("Yıldız Savaşları Bölüm V - İmparator", "Bilim kurgu filmi", "Harrison Ford", "1980 yapımı", "Yönetmen: Irvin Kershner"),
+    Film("Soysuzlar Çetesi", "Savaş filminin alternatif tarihi", "Brad Pitt", "Quentin Tarantino filmi", "Christoph Waltz"),
+   Film("Yedi", "Psikolojik gerilim filmi", "Brad Pitt", "David Fincher filmi", "Morgan Freeman"),
+    Film("Aralık Çocukları", "Noel teması olan aile filmi", "Macaulay Culkin", "1990 yapımı", "Yönetmen: Chris Columbus"),
+    Film("Kara Şövalye Yükseliyor", "Batman filmlerinden biri", "Christian Bale", "Christopher Nolan filmi", "Tom Hardy"),
+    Film("Cennetin Krallığı", "Epik savaş filmi", "Orlando Bloom", "Ridley Scott filmi", "2005 yapımı"),
+    Film("Aslan Kral", "Animasyon filmi", "Matthew Broderick", "1994 yapımı", "Yönetmenler: Roger Allers, Rob Minkoff"),
+    Film("Schindler'in Listesi", "Holokost teması olan savaş filmi", "Liam Neeson", "En İyi Film Akademi Ödülü", "Steven Spielberg filmi"),
+    Film("Hayat Güzeldir", "Holokost teması olan komedi-drama filmi", "Roberto Benigni", "En İyi Film Akademi Ödülü", "1997 yapımı"),
+    Film("Bir Rüya İçin Ağıt", "Neo-noir filmi", "Guy Pearce", "Christopher Nolan filmi", "Carrie-Anne Moss"),
+    Film("Esrarengiz Şöhret", "Dram filmi", "Kevin Spacey", "En İyi Film Akademi Ödülü", "1999 yapımı"),
+    Film("Kaybedenler Kulübü", "Drama filmi", "Brad Pitt", "David Fincher filmi", "Edward Norton"),
+    Film("Sevginin Gücü", "Aksiyon filmi", "Jean Reno", "1994 yapımı", "Yönetmen: Luc Besson"),
+    Film("Yağmur Adam", "Drama filmi", "Dustin Hoffman", "Tom Cruise", "En İyi Film Akademi Ödülü"),
+    Film("Gladyatör", "Tarihi aksiyon filmi", "Russell Crowe", "Joaquin Phoenix", "En İyi Film Akademi Ödülü"),
+    Film("Indiana Jones: Kayıp Diyarın Peşinde", "Macera filmi", "Harrison Ford", "Karen Allen", "Yönetmen:Steven Spielberg"),
+    Film("Ucuz Roman", "Suç filmi", "John Travolta", "Samuel L. Jackson", "Quentin Tarantino filmi"),
+    Film("Matrix Reloaded", "Bilim kurgu filmi", "Keanu Reeves", "Laurence Fishburne", "Yönetmen:Wachowski Kardeşler"),
+    Film("12 Öfkeli Adam", "Drama filmi", "Henry Fonda", "En İyi Film Akademi Ödülü", "Sidney Lumet filmi"),
+    Film("Parazit", "Kara mizah filmi", "Song Kang-ho", "En İyi Film Akademi Ödülü", "Bong Joon-ho filmi"),
+    Film("Ejderha Dövmeli Kız", "Suç-drama filmi", "Rooney Mara", "Daniel Craig", "David Fincher filmi"),
+    Film("Mucize", "Drama filmi", "Talat Bulut", "Mert Turak", "Mahsun Kırmızıgül filmi"),
+    Film("Amelie", "Romantik-komedi filmi", "Audrey Tautou", "Mathieu Kassovitz", "Yönetmen:Jean-Pierre Jeunet"),
+    Film("Dunkirk", "Savaş filmi", "Tom Hardy", "Christopher Nolan filmi", "Harry Styles"),
+    Film("Pinin Yaşamı", "Macera-drama filmi", "Suraj Sharma", "Irrfan Khan", "Ang Lee filmi"),Film("12 Öfkeli Adam", "Suç ve drama filmi", "Henry Fonda", "Sidney Lumet filmi", "En İyi Film Akademi Ödülü"),
+Film("Baba 2", "Mafya filmi", "Al Pacino", "Francis Ford Coppola filmi", "En İyi Film Akademi Ödülü"),
+Film("Yüzüklerin Efendisi: İki Kule", "Fantastik epik film", "Elijah Wood", "Peter Jackson filmi", "En İyi Film Akademi Ödülü"),
+Film("İyi, Kötü ve Çirkin", "Western filmi", "Clint Eastwood", "Sergio Leone filmi", "Film müziğiyle ünlüdür"),
+Film("Sıkı Dostlar", "Suç ve drama filmi", "Robert De Niro", "Martin Scorsese filmi", "En İyi Film Akademi Ödülü adayı"),
+Film("Yıldız Savaşları: İmparator", "Bilim kurgu filmi", "Mark Hamill", "George Lucas filmi", "Yıldız Savaşları serisinin beşinci filmi"),
+Film("Guguk Kuşu", "Dram filmi", "Jack Nicholson", "Miloš Forman filmi", "En İyi Film Akademi Ödülü"),
+Film("Elraynı Kurtarmak", "Savaş filmi", "Harrison Ford", "Steven Spielberg filmi", "En İyi Film Akademi Ödülü"),
+Film("Ruhların Kaçışı", "Fantastik animasyon filmi", "Tony Goldwyn", "Gary Trousdale ve Kirk Wise filmi", "Walt Disney Animasyon Stüdyoları yapımı"),
+Film("Tanrıkent", "Bilim kurgu filmi", "Charlton Heston", "Franklin J. Schaffner filmi", "En İyi Film Akademi Ödülü"),
+Film("Terminatör 2: Mahşer Günü", "Bilim kurgu aksiyon filmi", "Arnold Schwarzenegger", "James Cameron filmi", "En İyi Görsel Efekt Akademi Ödülü"),Film("Hayat Güzeldir", "Holokost dramı", "Roberto Benigni", "En İyi Film Akademi Ödülü", "2000 yapımı"),
+Film("Yedi Samuray", "Japon samuray filmi", "Akira Kurosawa filmi", "Efsanevi film yapımcısı", "1954 yapımı"),
+Film("Şahane Hayat", "Kara mizah", "Roberto Benigni", "En İyi Yabancı Film Akademi Ödülü", "1997 yapımı"),
+Film("Seppuku", "Samuray filmi", "Masaki Kobayashi filmi", "Japon klasiği", "1962 yapımı"),
+Film("Whiplash", "Müzikal drama", "Miles Teller", "J.K. Simmons", "En İyi Film Akademi Ödülü adayı"),
+Film("Geleceğe Dönüş", "Bilim kurgu/komedi", "Michael J. Fox", "Zaman yolculuğu teması", "1985 yapımı"),
+Film("Yaratık", "Bilim kurgu/korku", "Sigourney Weaver", "Alien canavarı", "1979 yapımı"),
+Film("Piyanist", "Holokost dramı", "Adrien Brody", "Roman Polanski filmi", "En İyi Film Akademi Ödülü"),
+Film("Olağan Şüpheliler", "Suç/dram filmi", "Kevin Spacey", "Bryan Singer filmi", "En İyi Film Akademi Ödülü"),
+Film("Geçmişin Gölgesinde", "Dram filmi", "Tommy Lee Jones", "En İyi Yardımcı Erkek Oyuncu Akademi Ödülü", "2005 yapımı"),
+Film("Can dostum", "Dram filmi", "Robin Williams", "En İyi Film Akademi Ödülü", "1997 yapımı"),
+Film("Sapık", "Psikolojik gerilim filmi", "Anthony Perkins", "Alfred Hitchcock filmi", "1960 yapımı"),
+Film("Casablanca", "Dram/romantik filmi", "Humphrey Bogart", "En İyi Film Akademi Ödülü", "1942 yapımı"),
+Film("Batıda kan var", "Western filmi", "Clint Eastwood", "Sergio Leone filmi", "1966 yapımı"),
+Film("Ateş böceklerinin mezarı", "Savaş/dram filmi", "Isao Takahata", "Studio Ghibli yapımı", "1988 yapımı"),
+Film("Cennet sineması", "Dram filmi", "Giuseppe Tornatore", "En İyi Film Akademi Ödülü", "1988 yapımı"),
+Film("Arka pencere", "Gerilim/dram filmi", "James Stewart", "Alfred Hitchcock filmi", "1954 yapımı"),
+Film("Yenilmezler son oyun", "Süperkahraman filmi", "Robert Downey Jr.", "Marvel filmi", "2019 yapımı"),
+Film("Örümcek Adam: Paralel Evrenler", "Süper kahraman animasyon filmi", "Tom Holland", "En İyi Animasyon Film Akademi Ödülü", "2018 yapımı"),
+Film("Kıyamet", "Aksiyon, macera filmi", "Bruce Willis", "Dünya sineması tarihindeki en büyük gişe yapan filmlerden biri", "1998 yapımı"),
+Film("Yenilmezler: Sonsuzluk Savaşı", "Süper kahraman filmi", "Robert Downey Jr.", "En İyi Görsel Efekt Akademi Ödülü", "2018 yapımı"),
+Film("Cinnet", "Psikolojik gerilim filmi", "Anthony Hopkins", "En İyi Erkek Oyuncu Akademi Ödülü", "1991 yapımı"),
+Film("Zincirsiz", "Western filmi", "Jamie Foxx", "En İyi Yardımcı Erkek Oyuncu Akademi Ödülü", "2012 yapımı"),
+Film("Senin Adın", "Dram, romantik filmi", "Timothée Chalamet", "En İyi Adapted Senaryo Akademi Ödülü", "2017 yapımı"),
+Film("İhtiyar Delikanlı", "Mafya filmi", "Leonardo DiCaprio", "Martin Scorsese filmi", "En İyi Film Akademi Ödülü"),
+Film("Yaratık 2: Yaratığın Dönüşü", "Bilim kurgu, korku filmi", "Sigourney Weaver", "En İyi Görsel Efekt Akademi Ödülü", "1986 yapımı"),
+Film("Kutsal Hazine Avcıları", "Macera filmi", "Harrison Ford", "En İyi Ses Kurgusu Akademi Ödülü", "1981 yapımı"),
+Film("Akıl Defteri", "Dram, gizem filmi", "Denzel Washington", "En İyi Erkek Oyuncu Akademi Ödülü", "2001 yapımı"),
+Film("Gel ve Gör", "Dram filmi", "Olga Mironova", "Cannes Film Festivali Jüri Özel Ödülü", "1985 yapımı"),
+Film("Cesur Yürek", "Tarihi, dram filmi", "Mel Gibson", "En İyi Film Akademi Ödülü", "1995 yapımı"),
+Film("Kefernahum", "Etkileyici dram", "Adrien Brody", "Roman Polanski filmi", "En İyi Film Akademi Ödülü"),
+Film("Coco", "Animasyon müzikal", "Anthony Gonzalez", "Lee Unkrich filmi", "En İyi Animasyon Filmi Akademi Ödülü"),
+Film("Başkalarının Hayatı", "Dram", "Marcello Mastroianni", "Federico Fellini filmi", "En İyi Yönetmen Cannes Film Festivali Ödülü"),
+Film("Amadeus", "Biyografik drama", "Tom Hulce", "Milos Forman filmi", "En İyi Film Akademi Ödülü"),
+Film("Voli", "Sessiz film", "Charles Chaplin", "Charles Chaplin filmi", "En İyi Müzik Akademi Ödülü"),
+Film("AMERİKAN GÜZELİ", "Dram", "Kevin Spacey", "Sam Mendes filmi", "En İyi Film Akademi Ödülü"),
+Film("Garip doktor", "Drama/Biyografi", "Anthony Hopkins", "David Lynch filmi", "En İyi Erkek Oyuncu Akademi Ödülü"),
+Film("Ubot Deniz Altı", "Bilimkurgu", "Ed Harris", "James Cameron filmi", "En İyi Ses Miksajı Akademi Ödülü"),
+Film("Sunset bulvarı", "Noir/Gizem", "William Holden", "Billy Wilder filmi", "En İyi Sanat Yönetimi Akademi Ödülü"),
+Film("Üç ahmak", "Komedi-drama", "Aamir Khan", "Rajkumar Hirani filmi", "En İyi Film Filmfare Ödülü"),
+Film("Beklenmeyen Şahit", "Gerilim", "Kevin Spacey", "Bryan Singer filmi", "En İyi Özgün Senaryo Akademi Ödülü"),
+Film("Zafer yolları", "Savaş", "Sylvester Stallone", "John G. Avildsen filmi", "En İyi Film Akademi Ödülü"),
+Film("Şarlo diktatör", "Komedi-drama", "Charlie Chaplin", "Charlie Chaplin filmi", "En İyi Müzik Akademi Ödülü"),
+Film("Yüksek ve alçak", "Gerilim-drama", "Toshirô Mifune", "Akira Kurosawa filmi", "Cannes Film Festivali En İyi Yönetmen Ödülü"),
+Film("Yıldız Savaşları 6 Jedinin Dönüşü", "Bilimkurgu-aksiyon", "Mark Hamill", "George Lucas filmi", "En İyi Özgün Şarkı Akademi Ödülü"),
+Film("SİLBAŞTAN", "Komedi", "Bill Murray", "Harold Ramis filmi", "En İyi Özgün Senaryo BAFTA Ödülü"),Film("Onur Savaşı", "Savaş draması", "Mel Gibson", "En İyi Yönetmen Akademi Ödülü", "İkinci Dünya Savaşı konulu"),
+
+Film("Rezervuar Köpekleri", "Suç filmi", "Quentin Tarantino", "Bağımsız Film Festivali Palme d'Or ödülü", "Kronolojik olmayan anlatım"),
+
+Film("Bir Zamanlar Amerika", "Mafya filmi", "Robert De Niro", "Sergio Leone'un son filmi", "1920'ler ve 30'lar New York'u"),
+
+Film("Oyuncak Hikayesi", "Animasyon filmi", "Tom Hanks", "John Lasseter'ın yönettiği ilk tam uzunluklu animasyon filmi", "1995 yapımı"),
+
+Film("Yurttaş Kane", "Drama", "Orson Welles", "Akademi Ödülleri'nde En İyi Film, En İyi Yönetmen ve En İyi Senaryo ödülleri", "Rosebud"),
+
+Film("Prenses Mononoke", "Animasyon filmi", "Hayao Miyazaki", "En iyi yabancı film dalında Japon Akademi Ödülü", "Ağaçların korunması teması"),
+
+Film("Ölüm Korkusu", "Gerilim filmi", "Alfred Hitchcock", "En İyi Ses Miksajı Akademi Ödülü", "Klasik bir nefret-suçu filmi"),
+
+Film("Lawrence of Arabia", "Epik savaş filmi", "Peter O'Toole", "En İyi Film Akademi Ödülü", "Arap Yarımadası'nda Birinci Dünya Savaşı"),
+
+Film("Oyuncak Hikayesi 3", "Animasyon filmi", "Tom Hanks", "En İyi Animasyon Film Akademi Ödülü", "Andy'nin büyüdüğünü gösteren son film"),
+
+Film("Gizli Teşkilat", "Aksiyon filmi", "Matt Damon", "Robert Ludlum'un romanından uyarlanmış", "Amnezi ve gizli ajanlar"),
+
+Film("Yağmur Altında", "Romantik drama", "Gene Kelly", "En İyi Film Akademi Ödülü", "Hollywood'un Altın Çağı"),
+
+Film("Yaşamak", "Fantastik komedi-drama", "James Stewart", "Frank Capra'nın yönettiği", "Bir meleğin insan hayatına müdahalesi"),
+Film("Bir Şehir Katilini Arıyor", "Gerilim filmi", "Gene Hackman", "En İyi Film, En İyi Yönetmen ve En İyi Özgün Senaryo BAFTA ödülleri", "Dinleme cihazları ve takip"),
+Film("2001 Uzay Yolu Macerası", "Bilim kurgu filmi", "Stanley Kubrick yönetmenliği", "En İyi Görsel Efektler Akademi Ödülü","HAL 9000 adlı yapay zeka karakteriyle tanınır"),
+Film("Asri Zamanlar", "Bilim kurgu filmi", "Timothée Chalamet", "Denis Villeneuve filmi", "Dune romanından uyarlanmış"),
+Film("Şehir Işıkları", "Sessiz komedi filmi", "Charlie Chaplin'in yazdığı, yönettiği ve başrolünde oynadığı bir film", "National Film Registry'ye seçildi","Filmde Chaplin'in karakteri bir kör kızla tanışır ve onun için mücadele eder"),
+]
+# tahmin edilen filmin doğru olup olmadığını kontrol etme fonksiyonu
+def kontrol_et(film, tahmin):
+    return tahmin.lower() == film.isim.lower()
+
+# oyunun başladığını belirten mesajı yazdırma
+print("Film tahmin oyununa hoş geldiniz!")
+
+# rastgele bir film seçme
+film = random.choice(filmler)
+print("Aklımdaki filmi tahmin edebilir misin? Haydi deneyelim")
+print(f"İpucu: {film.ipucu1}")
+# oyuncunun tahmin hakkı sayısı
+tahmin_hakki = 4
+# oyunun ana döngüsü
+while tahmin_hakki > 0:
+    print(f"{tahmin_hakki} tahmin hakkınız kaldı.")
+    tahmin = input("Filmin adını tahmin edin: ")
+    try:
+        if not tahmin.isalnum():
+            raise ValueError("Tahmin yalnızca harf ve rakam içermelidir.")
+    except ValueError as error:
+        print(f"Hata: {error}")
+        continue
+
+    if kontrol_et(film, tahmin):
+        print("Tebrikler, doğru tahmin ettiniz!")
+        break
+
+    tahmin_hakki -= 1
+
+    if tahmin_hakki == 3:
+        print(f"İpucu 2: {film.ipucu2}")
+    elif tahmin_hakki == 2:
+        print(f"İpucu 3: {film.ipucu3}")
+    elif tahmin_hakki == 1:
+        print(f"İpucu 4: {film.ipucu4}")
+    print("Son tahmin hakkınızı kullanın.")
+        
+    if tahmin_hakki == 0:
+        print("Cevap kontrol ediliyor...")
+        time.sleep(1)
+        print(f"Maalesef yanlış cevap.Tahmin Hakkınız Kalmadı:")
+        print(f"Dogru cevap:{film.isim}")
+
+print("Oyun bitti. Tekrar oynamak isterseniz yeniden başlatın.")
+
